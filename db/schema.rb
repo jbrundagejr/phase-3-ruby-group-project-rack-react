@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_170727) do
+ActiveRecord::Schema.define(version: 2021_05_11_214742) do
 
   create_table "comics", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2021_05_11_170727) do
     t.string "publisher"
     t.string "summary"
     t.string "image_url"
+    t.string "issue_number"
+    t.string "issue_title"
   end
 
   create_table "groups", force: :cascade do |t|
