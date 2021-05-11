@@ -14,8 +14,23 @@ class Application
       return [200, { 'Content-Type' => 'application/json' }, [ user.to_json ]]
 
     elsif req.path == "/comics" && req.get?
-      comic_to_json = Comic.all.to_json({include: :reviews})
+      comic_to_json = Comic.all.to_json({include: 
+        {reviews: 
+          {include: :user}
+        }
+      })
+
       return [200, { 'Content-Type' => 'application/json' }, [ comic_to_json ]]
+
+    elsif req.path.match(/comics/) && req.get?
+      id = req.path.split("/").last
+      comic = Comic.find(id).to_json({include: 
+      {reviews: 
+        {include: :user}
+      }
+    })
+      
+    return [200, { 'Content-Type' => 'application/json' }, [ comic ]]
 
     else
       resp.write "Path Not Found"
