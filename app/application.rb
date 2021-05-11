@@ -7,6 +7,12 @@ class Application
     if req.path.match(/test/) 
       return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
 
+    elsif req.path.match(/login/) && req.get?
+      email = req.split("/").last
+      user = User.find_by_email(email)
+
+      return [200, { 'Content-Type' => 'application/json' }, [ user.to_json ]]
+
     elsif req.path == "/comics" && req.get?
       comic_to_json = Comic.all.to_json({include: :reviews})
       return [200, { 'Content-Type' => 'application/json' }, [ comic_to_json ]]
