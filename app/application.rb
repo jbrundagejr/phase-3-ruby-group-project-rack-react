@@ -46,9 +46,20 @@ class Application
       return [201, { 'Content-Type' => 'application/json' }, [ comic ]]
 
     elsif req.path.match("/groups") && req.get?
-      group_to_json = Group.all.to_json({include: :posts})
+      group_to_json = Group.all.to_json({
+        include: {
+          posts: {
+            include: :user}
+          }
+        })
 
       return [200, { 'Content-Type' => 'application/json' }, [ group_to_json ]]
+    
+    elsif req.path.match("/groups") && req.post?
+      hash = JSON.parse(req.body.read)
+      new_group = Group.create(hash).to_json({include: :posts})
+
+      return [201, { 'Content-Type' => 'application/json' }, [ new_group ]]
 
     elsif req.path.match("/comics") && req.post?
       hash = JSON.parse(req.body.read)
@@ -59,6 +70,19 @@ class Application
       })
       
       return [201, { 'Content-Type' => 'application/json' }, [ new_comic ]]
+
+    elsif req.path.match("/posts") && req.post?
+      hash = JSON.parse(req.body.read)
+      new_post = Post.create(hash)
+      group = Group.find(new_post.group.id).to_json({
+        include: {
+          posts: {
+            include: :user
+          }
+        }
+      })
+      
+      return [201, { 'Content-Type' => 'application/json' }, [ group ]]
     
     else
       resp.write "Path Not Found"
