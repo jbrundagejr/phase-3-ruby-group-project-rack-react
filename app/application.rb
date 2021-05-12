@@ -44,6 +44,11 @@ class Application
     })
       
       return [201, { 'Content-Type' => 'application/json' }, [ comic ]]
+
+    elsif req.path.match("/groups") && req.get?
+      group_to_json = Group.all.to_json({include: :posts})
+
+      return [200, { 'Content-Type' => 'application/json' }, [ group_to_json ]]
     
     else
       resp.write "Path Not Found"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_214742) do
+ActiveRecord::Schema.define(version: 2021_05_12_175303) do
 
   create_table "comics", force: :cascade do |t|
     t.string "title"
@@ -24,13 +24,14 @@ ActiveRecord::Schema.define(version: 2021_05_11_214742) do
 
   create_table "groups", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "comic_id"
+    t.string "title"
   end
 
   create_table "posts", force: :cascade do |t|
     t.integer "group_id"
     t.string "title"
     t.string "content"
+    t.integer "user_id"
   end
 
   create_table "reviews", force: :cascade do |t|

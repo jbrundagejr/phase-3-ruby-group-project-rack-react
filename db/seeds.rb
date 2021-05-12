@@ -4,6 +4,7 @@ Post.destroy_all
 Review.destroy_all
 User.destroy_all
 
+puts "Creating comics..."
 Comic.create(title: "Swamp Thing",
             issue_title: "The Garden of Early Delights",
             issue_number: 53,
@@ -76,11 +77,13 @@ Comic.create(title: "The Amazing Spider-Man",
              image_url: "https://images-na.ssl-images-amazon.com/images/I/91ksTdt00TL.jpg")
 
 
-10.times do
+puts "Creating Users..."
+25.times do
   User.create(name: Faker::Name.name,
               email: Faker::Internet.safe_email)
 end
 
+puts "Creating Reviews..."
 15.times do
   Review.create(comic_id: Comic.all.sample.id,
                 user_id: User.all.sample.id,
@@ -88,13 +91,17 @@ end
                 rating: rand(1..5))
 end
 
-5.times do
+puts "Creating Groups..."
+8.times do
   Group.create(user_id: User.all.sample.id,
-               comic_id: Comic.all.sample.id)
+               title: Faker::Lorem.sentence(word_count: 3))
 end
 
-10.times do
+puts "Creating Posts..."
+20.times do
   Post.create(group_id: Group.all.sample.id,
-              title: Faker::Lorem.sentence(word_count: 3),
+              user_id: User.all.sample.id,
               content: Faker::Lorem.paragraph(sentence_count: 4))
 end
+
+puts "...Done!"
