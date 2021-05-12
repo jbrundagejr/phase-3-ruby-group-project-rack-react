@@ -5,4 +5,5 @@ class Review < ActiveRecord::Base
   def reviewer_name
     self.user.name
   end
+
 end

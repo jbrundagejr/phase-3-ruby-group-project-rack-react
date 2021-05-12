@@ -4,10 +4,7 @@ class Application
     resp = Rack::Response.new
     req = Rack::Request.new(env)
 
-    if req.path.match(/test/) 
-      return [200, { 'Content-Type' => 'application/json' }, [ {:message => "test response!"}.to_json ]]
-
-    elsif req.path.match(/login/) && req.get?
+    if req.path.match(/login/) && req.get?
       email = req.split("/").last
       user = User.find_by_email(email)
 
@@ -21,17 +18,33 @@ class Application
       })
 
       return [200, { 'Content-Type' => 'application/json' }, [ comic_to_json ]]
+    
+    elsif req.path == "/reviews" && req.get?
+      review_to_json = Review.all.to_json
+
+      return [200, { 'Content-Type' => 'application/json' }, [ review_to_json ]]
 
     elsif req.path.match(/comics/) && req.get?
       id = req.path.split("/").last
       comic = Comic.find(id).to_json({include: 
+        {reviews: 
+          {include: :user}
+        }
+      })
+      
+      return [200, { 'Content-Type' => 'application/json' }, [ comic ]]
+
+    elsif req.path.match("/reviews") && req.post?
+      hash = JSON.parse(req.body.read)
+      new_review = Review.create(hash)
+      comic = Comic.find(new_review.comic.id).to_json({include: 
       {reviews: 
         {include: :user}
       }
     })
       
-    return [200, { 'Content-Type' => 'application/json' }, [ comic ]]
-
+      return [201, { 'Content-Type' => 'application/json' }, [ comic ]]
+    
     else
       resp.write "Path Not Found"
 

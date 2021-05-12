@@ -31,14 +31,14 @@ Comic.create(title: "The Sandman",
              author: "Neil Gaiman", 
              publisher: "DC Comics",
              summary: "Morpheus, the king of dreams, helps William Shakespeare in crafting his famous play. Regarded as a fan-favorite to this day.",
-             image_url: "https://static.wikia.nocookie.net/marvel_dc/images/5/54/Sandman_Vol_2_19.jpg/revision/latest/top-crop/width/360/height/450?cb=20111220200238")
+             image_url: "https://i1.wp.com/cokeandcomics.com/wp-content/uploads/2020/07/cover-1-scaled.jpeg?fit=648%2C1024&ssl=1")
 Comic.create(title: "Detective Comics",
              issue_title: "The Case of the Chemical Syndicate",
              issue_number: 27,
              author: "Bob Kane", 
              publisher: "DC Comics",
              summary: "After a murder, Commissioner Gordon is helped by young playboy Bruce Wayne in his investigation. Shortly after Gordon receives a tip, Wayne excuses himself and later that night, Gotham, and the world, meet The Batman for the very first time.",
-             image_url: "https://static.wikia.nocookie.net/marvel_dc/images/a/a8/Detective_Comics_27.jpg/revision/latest?cb=20140906210315")
+             image_url: "https://blog.gocollect.com/wp-content/uploads/2020/04/Detective-Comics-27-1984.jpg")
 Comic.create(title: "Saga",
              issue_title: "Volume 12",
              issue_number: 12,
@@ -59,7 +59,7 @@ Comic.create(title: "Miracleman",
              author: "Alan Moore", 
              publisher: "Marvel",
              summary: "Former Miracleman sidekick Kid Marvelman has lost his mind and unleashes destruction upon London. Miracleman is forced to take the highest measure to end Kid Miracleman's terror.",
-             image_url: "https://images-na.ssl-images-amazon.com/images/I/A1W5b+Hy26L.jpg")
+             image_url: "https://marswillsendnomore.files.wordpress.com/2011/12/miracleman15-00.jpg")
 Comic.create(title: "The Walking Dead",
              issue_title: "",
              issue_number: 19,
