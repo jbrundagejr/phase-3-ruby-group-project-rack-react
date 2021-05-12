@@ -38,10 +38,10 @@ class Application
       hash = JSON.parse(req.body.read)
       new_review = Review.create(hash)
       comic = Comic.find(new_review.comic.id).to_json({include: 
-      {reviews: 
-        {include: :user}
-      }
-    })
+        {reviews: 
+          {include: :user}
+        }
+      })
       
       return [201, { 'Content-Type' => 'application/json' }, [ comic ]]
 
@@ -49,6 +49,16 @@ class Application
       group_to_json = Group.all.to_json({include: :posts})
 
       return [200, { 'Content-Type' => 'application/json' }, [ group_to_json ]]
+
+    elsif req.path.match("/comics") && req.post?
+      hash = JSON.parse(req.body.read)
+      new_comic = Comic.create(hash).to_json({include: 
+        {reviews: 
+          {include: :user}
+        }
+      })
+      
+      return [201, { 'Content-Type' => 'application/json' }, [ new_comic ]]
     
     else
       resp.write "Path Not Found"
