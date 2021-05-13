@@ -5,7 +5,7 @@ class Application
     req = Rack::Request.new(env)
 
     if req.path.match(/login/) && req.get?
-      email = req.split("/").last
+      email = req.path.split("/").last
       user = User.find_by_email(email)
 
       return [200, { 'Content-Type' => 'application/json' }, [ user.to_json ]]
