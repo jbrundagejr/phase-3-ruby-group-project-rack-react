@@ -20,7 +20,7 @@ class Application
       comic_to_json = Comic.all.to_json({include: 
         {reviews: 
           {include: :user}
-        }
+        }, methods: [:rating_average]
       })
 
       return [200, { 'Content-Type' => 'application/json' }, [ comic_to_json ]]
@@ -35,7 +35,7 @@ class Application
       comic = Comic.find(id).to_json({include: 
         {reviews: 
           {include: :user}
-        }
+        }, methods: [:rating_average]
       })
       
       return [200, { 'Content-Type' => 'application/json' }, [ comic ]]
