@@ -8,7 +8,11 @@ class Application
       email = req.path.split("/").last
       user = User.find_by_email(email)
 
-      return [200, { 'Content-Type' => 'application/json' }, [ user.to_json ]]
+      if !!user
+        return [200, { 'Content-Type' => 'application/json' }, [ user.to_json ]]
+      else
+        return [400, { 'Content-Type' => 'application/json' }, [ {}.to_json ]]
+      end
 
     elsif req.path.match("/sign_up") && req.post?   #Sign up
       hash = JSON.parse(req.body.read)
