@@ -78,30 +78,28 @@ Comic.create(title: "The Amazing Spider-Man",
 
 
 puts "Creating Users..."
-25.times do
+10.times do
   User.create(name: Faker::Name.name,
               email: Faker::Internet.safe_email)
 end
 
-puts "Creating Reviews..."
-15.times do
-  Review.create(comic_id: Comic.all.sample.id,
-                user_id: User.all.sample.id,
-                content: Faker::Lorem.paragraph(sentence_count: 2),
-                rating: rand(1..5))
-end
-
 puts "Creating Groups..."
-8.times do
   Group.create(user_id: User.all.sample.id,
-               title: Faker::Lorem.sentence(word_count: 3))
-end
+               title: "Pattinson The BatMan Delayed Again??")
+  Group.create(user_id: User.all.sample.id,
+               title: "Snyder Justice League Vs. Josstice League")
+  Group.create(user_id: User.all.sample.id,
+               title: "Anthony Mackie Kicks Ass as Cap")
+  Group.create(user_id: User.all.sample.id,
+               title: "Rey > Luke?")
+  Group.create(user_id: User.all.sample.id,
+               title: "Doge or Bitcoin...")
+
 
 puts "Creating Posts..."
-20.times do
-  Post.create(group_id: Group.all.sample.id,
-              user_id: User.all.sample.id,
-              content: Faker::Lorem.paragraph(sentence_count: 4))
-end
+Post.create(group_id: 1,
+            user_id: User.all.sample.id,
+            content: "Heard they shut down production again. Is this movie ever gonna get made?")
+
 
 puts "...Done!"
