@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'pry'
+gem 'concurrent-ruby'
 gem 'rack'
 gem 'rack-test'
 gem 'rspec'
