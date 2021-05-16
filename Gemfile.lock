@@ -71,7 +71,6 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord (~> 5.2)
-  concurrent-ruby (~> 1.1.8)
   faker
   pg
   pry
